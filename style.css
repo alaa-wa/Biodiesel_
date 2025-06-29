@@ -1,0 +1,106 @@
+body {
+    background: #f6f8fc;
+    font-family: 'Cairo', 'Segoe UI', Arial, sans-serif;
+}
+.card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px #e7eaf3;
+    background: #fff;
+}
+.stat-card {
+    min-height: 140px;
+}
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+.stat-title {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.7;
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 4px;
+}
+.chart-card {
+    min-height: 210px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.1rem 1.2rem 0.7rem 1.2rem;
+}
+.chart-title, .section-title {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #22223b;
+    margin-bottom: 12px;
+}
+.investment-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid #f1f5f9;
+    background: #f9fafb;
+}
+.investment-item {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+.investment-item:last-child {
+    margin-bottom: 0;
+}
+.investment-item .fw-bold {
+    font-size: 1rem;
+}
+.investment-item .text-muted {
+    font-size: 0.85rem;
+}
+.trend-table th, .trend-table td {
+    vertical-align: middle;
+    background: transparent !important;
+    border: none;
+}
+.trend-table th {
+    color: #a1a1aa;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.trend-table td {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.return-pos { color: #22c55e; font-weight: bold; }
+.return-neg { color: #ef4444; font-weight: bold; }
+.return-neutral { color: #0ea5e9; font-weight: bold; }
+.section-title {
+    color: #22223b;
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+@media (max-width: 991px) {
+    .main-bg {
+        padding: 0 !important;
+    }
+    .card, .stat-card, .chart-card {
+        border-radius: 12px;
+    }
+}
+@media (max-width: 767px) {
+    .stat-card, .card {
+        min-height: unset;
+    }
+    .investment-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Investment Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container py-4">
+    <!-- Top Stats -->
+    <div class="row mb-4 g-3">
+        <div class="col-md-4">
+            <div class="card stat-card p-3 text-center h-100">
+                <div class="stat-icon mb-2" style="background:#e0f7fa;"><span class="fs-3 text-info">💲</span></div>
+                <div class="stat-title text-info">Total Invested Amount</div>
+                <div class="stat-value">$150,000</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card p-3 text-center h-100">
+                <div class="stat-icon mb-2" style="background:#fce4ec;"><span class="fs-3 text-danger">🔢</span></div>
+                <div class="stat-title text-danger">Number of Investments</div>
+                <div class="stat-value">1,250</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card p-3 text-center h-100">
+                <div class="stat-icon mb-2" style="background:#e3f2fd;"><span class="fs-3 text-primary">🔄</span></div>
+                <div class="stat-title text-primary">Rate of Return</div>
+                <div class="stat-value text-success">+5.80%</div>
+            </div>
+        </div>
+    </div>
+    <!-- Charts -->
+    <div class="row mb-4 g-3">
+        <div class="col-md-6">
+            <div class="card p-3 h-100">
+                <div class="fw-bold mb-2 chart-title">Yearly Total Investment</div>
+                <canvas id="yearlyInvestment"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3 h-100">
+                <div class="fw-bold mb-2 chart-title">Monthly Revenue</div>
+                <canvas id="monthlyRevenue"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Investments & Trending Stock -->
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card p-3 h-100">
+                <div class="fw-bold mb-3 section-title">Investments</div>
+                <div class="investment-item d-flex align-items-center mb-3">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=60&h=60" class="investment-img me-3" alt="Diesel">
+                    <div>
+                        <div class="fw-bold">Diesel</div>
+                        <div class="text-muted small">Investment Value</div>
+                    </div>
+                    <div class="ms-auto text-end">
+                        <div class="fw-bold">$54,000</div>
+                        <div class="return-pos">+16%</div>
+                    </div>
+                </div>
+                <div class="investment-item d-flex align-items-center mb-3">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=60&h=60" class="investment-img me-3" alt="Gas">
+                    <div>
+                        <div class="fw-bold">Gas</div>
+                        <div class="text-muted small">Investment Value</div>
+                    </div>
+                    <div class="ms-auto text-end">
+                        <div class="fw-bold">$25,300</div>
+                        <div class="return-neg">-4%</div>
+                    </div>
+                </div>
+                <div class="investment-item d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=60&h=60" class="investment-img me-3" alt="Electric">
+                    <div>
+                        <div class="fw-bold">Electric</div>
+                        <div class="text-muted small">Investment Value</div>
+                    </div>
+                    <div class="ms-auto text-end">
+                        <div class="fw-bold">$8,200</div>
+                        <div class="return-pos">+25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3 h-100">
+                <div class="fw-bold mb-3 section-title">Trending Stock</div>
+                <table class="table trend-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>SL No</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Return</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01.</td>
+                            <td>Gas</td>
+                            <td>$520</td>
+                            <td class="return-pos">+5%</td>
+                        </tr>
+                        <tr>
+                            <td>02.</td>
+                            <td>Biodiesel</td>
+                            <td>$480</td>
+                            <td class="return-pos">+10%</td>
+                        </tr>
+                        <tr>
+                            <td>03.</td>
+                            <td>Electric</td>
+                            <td>$350</td>
+                            <td class="return-neg">-3%</td>
+                        </tr>
+                        <tr>
+                            <td>04.</td>
+                            <td>Diesel</td>
+                            <td>$940</td>
+                            <td class="return-neutral">+2%</td>
+                        </tr>
+                        <tr>
+                            <td>05.</td>
+                            <td>Bimao</td>
+                            <td>$670</td>
+                            <td class="return-neg">-12%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chart.js Scripts -->
+<script>
+    // Yearly Investment Chart
+    new Chart(document.getElementById('yearlyInvestment'), {
+        type: 'line',
+        data: {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021'],
+            datasets: [{
+                label: 'Investment',
+                data: [5000, 21000, 17000, 35000, 20000, 27000],
+                borderColor: '#fbbf24',
+                backgroundColor: 'rgba(251,191,36,0.1)',
+                tension: 0.4,
+                fill: true,
+                pointRadius: 5,
+                pointBackgroundColor: '#fbbf24'
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => `$${v.toLocaleString()}` } }
+            }
+        }
+    });
+
+    // Monthly Revenue Chart
+    new Chart(document.getElementById('monthlyRevenue'), {
+        type: 'line',
+        data: {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021'],
+            datasets: [{
+                label: 'Revenue',
+                data: [12000, 18000, 25000, 31000, 22000, 34000],
+                borderColor: '#06b6d4',
+                backgroundColor: 'rgba(6,182,212,0.1)',
+                tension: 0.4,
+                fill: true,
+                pointRadius: 5,
+                pointBackgroundColor: '#06b6d4'
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => `$${v.toLocaleString()}` } }
+            }
+        }
+    });
+</script>
+</body>
+</html>
